@@ -32,16 +32,22 @@ currentFollowers = set(twitterAPI.get_followers_ids()["ids"])
 toFollow = currentFollowers.difference(lastrunFollowers)
 
 for ID in toFollow:
+	user = twitterAPI.show_user(user_id=ID)
+
 	twitterAPI.create_friendship(user_id=ID)
-	print("Followed {}.".format(ID))
+
+	print("Followed {} (@{}) back.".format(user["name"], user["screen_name"]))
 
 # == Unfollow Unfollowers ==
 # DESC: Unfollow everyone in lastrun follower list who isn't in current follower list.
 toUnfollow = lastrunFollowers - currentFollowers
 
 for ID in toUnfollow:
+	user = twitterAPI.show_user(user_id=ID)
+
 	twitterAPI.destroy_friendship(user_id=ID)
-	print("Unfollowed {}.".format(ID))
+
+	print("Unfollowed {} (@{}).".format(user["name"], user["screen_name"]))
 
 
 # == Save Set ==
