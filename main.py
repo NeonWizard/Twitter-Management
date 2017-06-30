@@ -16,8 +16,7 @@ from boto.s3.connection import S3Connection
 twitterAPI = Twython(os.environ["TWITTER_API_KEY"], os.environ["TWITTER_API_SECRET"], os.environ["TWITTER_TOKEN"], os.environ["TWITTER_TOKEN_SECRET"])
 s3API = S3Connection(os.environ["S3_KEY"], os.environ["S3_SECRET_KEY"])
 
-bucket = s3API.get_bucket("wespooky-twittermanagement")
-key = bucket.get_key("followers.txt")
+key = s3API.get_bucket("wespooky-twittermanagement").get_key("followers.txt")
 
 # ======================
 #   -=- CODE TIME -=-
