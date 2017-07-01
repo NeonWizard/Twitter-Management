@@ -35,7 +35,7 @@ for ID in toFollow:
 		user = twitterAPI.show_user(user_id=ID)
 
 		twitterAPI.create_friendship(user_id=ID)
-		sys.stdout.write("Followed {} (@{}) back.".format(user["name"], user["screen_name"]))
+		sys.stdout.write("Followed {} (@{}) back.\n".format(user["name"], user["screen_name"]))
 
 	except: # Rate limit or 404 (should probably do special stuff here later)
 		pass
@@ -49,11 +49,12 @@ for ID in toUnfollow:
 		user = twitterAPI.show_user(user_id=ID)
 
 		twitterAPI.destroy_friendship(user_id=ID)
-		sys.stdout.write("Unfollowed {} (@{}).".format(user["name"], user["screen_name"]))
+		sys.stdout.write("Unfollowed {} (@{}).\n".format(user["name"], user["screen_name"]))
 
 	except:
 		pass
 
+sys.stdout.flush()
 
 # == Save Set ==
 key.set_contents_from_string(
