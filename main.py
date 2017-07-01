@@ -8,7 +8,7 @@
 # 	for line in cvarFile:
 # 		print(line)
 
-import os
+import os, sys
 import time
 from twython import Twython, TwythonError, TwythonRateLimitError
 from boto.s3.connection import S3Connection
@@ -35,7 +35,7 @@ for ID in toFollow:
 		user = twitterAPI.show_user(user_id=ID)
 
 		twitterAPI.create_friendship(user_id=ID)
-		print("Followed {} (@{}) back.".format(user["name"], user["screen_name"]))
+		sys.stdout.write("Followed {} (@{}) back.".format(user["name"], user["screen_name"]))
 
 	except: # Rate limit or 404 (should probably do special stuff here later)
 		pass
@@ -49,7 +49,7 @@ for ID in toUnfollow:
 		user = twitterAPI.show_user(user_id=ID)
 
 		twitterAPI.destroy_friendship(user_id=ID)
-		print("Unfollowed {} (@{}).".format(user["name"], user["screen_name"]))
+		sys.stdout.write("Unfollowed {} (@{}).".format(user["name"], user["screen_name"]))
 
 	except:
 		pass
