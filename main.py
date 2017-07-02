@@ -1,13 +1,3 @@
-# import urllib.request
-
-# req = urllib.request.Request("https://api.heroku.com/apps/immense-refuge-73091/config-vars")
-# req.add_header("Accept", "application/vnd.heroku+json; version=3")
-# req.add_header("Authorization", "Bearer {}".format("1d2e52e6-a0b2-41c8-b9c7-0d08acf6dd44"))
-
-# with urllib.request.urlopen(req) as cvarFile:
-# 	for line in cvarFile:
-# 		print(line)
-
 import os, sys
 import time
 from twython import Twython, TwythonError, TwythonRateLimitError
